@@ -6,7 +6,7 @@
 To run these - go to /etc/ansible and type ./run-nectar.sh
 Provide OpenRC file password and sudo password to run all the scripts in 1 go.
 
-@Shubham - Extracted Aurin Data in .json and .CSV format.
+@Shubham - Extracted Aurin Data in .json and .CSV format, filtered out to proceed analysis on Melbourne Region only.
 
 @Vinshon - Created CouchDB Cluster and connected nodes to SHUBHAM-VM2 and SHUBHAM-VM3.
 
