@@ -1,6 +1,6 @@
 # Cluster-Project-2
 
-@Shubham - Created the python file to create connection with couchdb server and extracted data from UNIMLEB Research Cloud in the file twitter.json
+@Shubham - Created the python file to create connection with couchdb server and extracted data from UNIMLEB Research Cloud in the file twitter.json. Location: Cluster-Project-2/Inputs/Unimelb Cloud Extract Code
 
 @Shubham - Created the Instance using Ansible folder that has all the Ansible and Shell scripts
 To run these - go to /etc/ansible and type ./run-nectar.sh
