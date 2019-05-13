@@ -13,10 +13,10 @@ Location: Cluster-Project-2/Aurin Data/
 
 @Vinshon - Created CouchDB Cluster and connected nodes to SHUBHAM-VM2 and SHUBHAM-VM3 (Manually, not via Ansible), currently working on MapReduce.
 
-@Sindhusha - Removed Duplicate Tweets from twitter.json (provided initially) that has data as of perth, we processed the just to check if it's working(functionality) and trying working on Front end using Flask.
+@Sindhusha - Removed Duplicate Tweets from twitter.json (provided initially) that has data as of perth, we processed the just to check if it's working(functionality) and helping with Front end development.
 
-@Haritha - Extracted the data from Twittter using Twitter API, creating the front end using Flask - HTML/CSS/Python
+@Harita - Extracted the data from Twitter using Twitter API and stored in CouchDB, Creating the front end using Flask - HTML/CSS/Python
 
-@Pan - Worked on the data extracted from Twitter API using Python scripts and filltered the data to remove duplicate tweets on the basis of Twitter ID's. He will be adding the twitter.json file data(extracted from Melbourne Research Cloud) and Aurin data that was extracted to couchDB.
+@Pan - Filtered the data to remove duplicate tweets on the basis of Twitter ID's and analysis of the tweets with regards to offence using Python. He will be adding the twitter.json file data(extracted from Melbourne Research Cloud) and Aurin data that was extracted to couchDB as well. 
 
 Pending ?? ==> Analysis/Indivisual-Report/Video of the Project/Slides as
