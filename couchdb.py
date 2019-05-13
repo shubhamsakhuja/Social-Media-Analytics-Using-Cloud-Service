@@ -1,6 +1,6 @@
 import couchdb
 
-couchserver = couchdb.Server("http://115.146.85.64:9584/")
+couchserver = couchdb.Server("http://172.26.38.21:5984/_utils")
 
 for dbname in couchserver:
     print(dbname)
