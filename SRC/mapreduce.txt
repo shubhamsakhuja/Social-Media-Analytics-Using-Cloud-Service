@@ -1,0 +1,126 @@
+
+#######################################################################
+# the purpose of this code is to mapreduce the useful tweets
+# this java script can only run on the couchDB
+# use _sum and reduce to run this script, the result will be the keywords and it's frequency
+#######################################################################
+
+
+
+function (doc) {
+  var d = new Date(str);
+  var str = d.toLocaleDateString();
+  var a = /homicide/i;
+  var b = /assault/i;
+  var c = /sexual/i;
+  var e = /abduction/i;
+  var f = /robbery/i;
+  var g1 = /blackmail/i; 
+  var g2 = /extortion/i;
+  var h1 = /stalking/i;
+  var h2 = /harassment/i;
+  var h3 = /threat/i;
+  var i = /negligent/i;
+  var j = /arson/i;
+  var k = /burglary/i;
+  var l = /theft/i;
+  var m = /deception/i;
+  var n = /bribery/i;
+  var o = /drug/i;
+  var p1 = /weapon/i;
+  var p2 = /explosive/i;
+  var q = /disorderly/i;
+  var r = /offence/i;
+
+  var documents = doc.doc
+  var txt = documents.text;
+  
+  var result1 = (a.test(txt));
+  var result2 = (b.test(txt));
+  var result3 = (c.test(txt));
+  var result4 = (e.test(txt));
+  var result5 = (f.test(txt));
+  var result6 = (g1.test(txt))||(g2.test(txt));
+  var result7 = (h1.test(txt))||(h2.test(txt))||(h3.test(txt));
+  var result8 = (i.test(txt));
+  var result9 = (j.test(txt));
+  var result10 = (k.test(txt));
+  var result11 = (l.test(txt));
+  var result12 = (m.test(txt));
+  var result13 = (n.test(txt));
+  var result14 = (o.test(txt));
+  var result15 = (p1.test(txt))||(p2.test(txt));
+  var result16 = (q.test(txt));
+  var result17 = (r.test(txt));
+ 
+  
+  if (result1)
+   {
+     emit("Homicide",1);
+   }
+   if (result2)
+   {
+     emit("Assault",1);
+   }
+   if (result3)
+   {
+     emit("Sexual",1);
+   }
+   if (result4)
+   {
+     emit("Abduction",1);
+   }
+   if (result5)
+   {
+     emit("Robbery",1);
+   }
+   if (result6)
+   {
+     emit("Blackmail and extortion",1);
+   }
+   if (result7)
+   {
+     emit("Stalking harassment and threatening",1);
+   }
+   if (result8)
+   {
+     emit("Negligent",1);
+   }
+   if (result9)
+   {
+     emit("Arson",1);
+   }
+   if (result10)
+   {
+     emit("Burglary",1);
+   }
+   if (result11)
+   {
+     emit("Theft",1);
+   }
+   if (result12)
+   {
+     emit("Deception",1);
+   }
+   if (result13)
+   {
+     emit("Bribery",1);
+   }
+   if (result14)
+   {
+     emit("Drug",1);
+   }
+   if (result15)
+   {
+     emit("Weapon and explosive",1);
+   }
+   if (result16)
+   {
+     emit("Disorderly",1);
+   }
+   if (result17)
+   {
+     emit("other offence",1);
+   }
+   
+}
