@@ -14,7 +14,7 @@ Location: URL:
 
 @Vinshon - Created CouchDB Cluster and connected nodes to SHUBHAM-VM2 and SHUBHAM-VM3 (Manually, not via Ansible), worked on Map Reduce part 
 
-@Sindhusha - Removed Duplicate Tweets from twitter.json (provided initially) that has data as of perth, we processed the just to check if it's working(functionality).
+@Sindhusha - Removed Duplicate Tweets from twitter.json (provided initially) that has data as of perth, we processed the just to check if it's working(functionality). Worked on creatation of presentation slides on 15/5/19.
 
 @Harita - Extracted the data from Twitter using Twitter API and stored data in CouchDB, Creating the front end using Flask - HTML/CSS/Python
 
