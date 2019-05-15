@@ -1,0 +1,31 @@
+#To open the instance
+sudo ssh -i /home/vinshondemi/.ssh/Instance4key.pem ubuntu@172.26.37.47
+#To update apt-get
+sudo apt-get update
+#To enable couchdb package repository
+echo "deb https://apache.bintray.com/couchdb-deb bionic main" \
+    | sudo tee -a /etc/apt/sources.list
+#To install repository key
+curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc \
+    | sudo apt-key add -
+#To install the package
+sudo apt-get update && sudo apt-get install couchdb
+#Choose cluster
+#Set erlang node name as: couchdb@172.26.37.47
+#Set cookie: monster
+#Set password: demis
+#To close firewall
+sudo systemctl stop ufw
+sudo systemctl disable ufw
+#To check CouchDB is running
+curl http://172.26.37.47:5984
+#To check cluster configuration
+sudo debconf-show couchdb
+#To install jq
+sudo apt install jq
+#To check nodes connected
+curl -s http://admin:demis@172.26.37.47:5984/_membership | jq '.'
+#To remove the 127.0.0.1
+curl "http://admin:demis@127.0.0.1:5986/_nodes/couchdb@172.26.37.47"
+curl -X DELETE "http://admin:demis@127.0.0.1:5986/_nodes/couchdb@172.26.37.47?rev=1-967a00dff5e02add41819138abb3284d"
+#Cluster set-up done
