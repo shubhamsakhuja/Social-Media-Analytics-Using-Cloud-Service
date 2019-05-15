@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">   
+<title>Chart.js </title>
+<script src="static/Chart.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+  .body{
+     background: black;
+     color: whitesmoke;
+     font-family: fantasy;
+  }
+  .jumbotron{
+     background-image: url("{{url_for('static', filename='wood.jpg')}}");
+     height:800px
+  }
+  .header{
+   font-size: 6.5rem;
+   font-family: fantasy;
+   color: whitesmoke;
+   text-align: left;
+  }
+  .question{
+   font-size: 52px;
+   padding: 1%;
+  }
+  .charts{
+   background-image: url("{{url_for('static', filename='black.jpg')}}");
+   height: 800px;
+   margin-bottom: 3%;
+  }
+  .charts2{
+   background-image: url("{{url_for('static', filename='wallet.jpg')}}");
+   height: 800px;
+   margin-bottom: 3%;
+  }
+  .button{
+   border-radius: 10px;
+   font-size: 17px;
+   padding: 0.2%;
+   margin-left: 50%;
+  }
+  .button2{
+   border-radius: 10px;
+   font-size: 17px;
+   padding: 0.2%;
+   margin-left: 75%;
+  }
+  .chart_head{
+   font-size: 1.75rem;
+   padding-top: 2%;
+   border-bottom: 2px solid whitesmoke;
+  }
+  #chart1,#chart2{
+   padding-left: 2%;
+   color:#e2e2e2;
+  }
+  #chart3, #chart4{
+     margin-top: 5%
+  }
+  ul.pie-legend {
+    list-style: none;
+}
+ul.pie-legend span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+}
+  </style>
+</head>
+<body class = "body">
+
+<div class="jumbotron text-center">
+  <div class = "header">7 Deadly Sins</div>
+  <div class= "intro">
+      <div class="question">Melbourne was voted the best liveable city in the world for last seven years. But is its really true?</div>
+     <div class="question">How much offence does Melbourne have these?</div>
+     <div class="question"> Can the tweets from Melbourne help us decide the kind of offence that could occur?</div>
+     <input type="button" class="button" onClick="document.getElementById('charts').scrollIntoView();" value = "Well, Click here to find out"></input>
+   </div>
+</div>
+  
+<div id="charts" class="charts">
+  <div class="row">
+    <div class="col-sm-6">
+         <div class= "chart_head">AURIN Dataset - Offences</div>
+      <canvas id="chart1" width="700" height="700"></canvas>
+    </div>
+    <div class="col-sm-6">
+      <div class= "chart_head">Tweets - Offences</div>
+      <canvas id="chart2" width="700" height="700"></canvas>
+    </div>
+    <input type="button" class="button2" onClick="document.getElementById('charts2').scrollIntoView();" value = "What sins are offences related to?"></input>
+  </div>
+</div>
+<div id="charts2" class="charts2">
+      <div class="row">
+        <div class="col-sm-6">
+             <div class= "chart_head">AURIN Dataset - Sins</div>
+          <canvas id="chart3" width="700" height="400"></canvas>
+          <div id="legend"></div>
+        </div>
+        <div class="col-sm-6">
+          <div class= "chart_head">Tweets - Sins</div>
+          <canvas id="chart4" width="700" height="400"></canvas>
+          <div id="legend2"></div>
+        </div>
+      </div>
+    </div>
+<script>
+      // bar chart data<br />
+      var barData_au = {
+      labels : [{% for item in label_au %}
+                "{{item}}",
+               {% endfor %}],
+      
+      datasets : [
+         {
+               fillColor: "#e2e2e2",
+               strokeColor: "#e2e2e2",
+               pointColor: "#e2e2e2",
+            data : [{% for item in value_au %}
+                   {{item}},
+                 {% endfor %}]
+         }
+         ]
+      }
+     // get bar chart canvas<br />
+      var mychart_au = document.getElementById("chart1").getContext("2d");
+      Chart.defaults.global.defaultFontColor = '#e2e2e2';
+      steps = 10
+      max = 60000
+      new Chart(mychart_au).Bar(barData_au, {
+           scaleOverride : true,
+           scaleSteps: steps,
+           scaleStepWidth: Math.ceil(max / steps),
+           scaleStartValue: 0,
+           scaleShowVerticalLines: true,
+           scaleShowGridLines : true,
+           barShowStroke : true,
+           scaleShowLabels: true
+      });
+      var barData = {
+      labels : [{% for item in labels %}
+                "{{item}}",
+               {% endfor %}],
+      datasets : [
+         {
+               fillColor: "#e2e2e2",
+               strokeColor: "#e2e2e2",
+               defaultFontColor:"#e2e2e2",
+               pointColor: "#e2e2e2",
+            data : [{% for item in values %}
+                   {{item}},
+                 {% endfor %}]
+         }
+
+         ]
+      }
+     // get bar chart canvas<br />
+      var mychart = document.getElementById("chart2").getContext("2d");
+      Chart.defaults.global.defaultFontColor = '#e2e2e2';
+      steps = 10
+      max = 1000
+      new Chart(mychart).Bar(barData, {
+           scaleOverride : true,
+           scaleSteps: steps,
+           scaleStepWidth: Math.ceil(max / steps),
+           scaleStartValue: 0,
+           scaleShowVerticalLines: true,
+           scaleShowGridLines : true,
+           barShowStroke : true,
+           scaleShowLabels: true
+      });
+      
+     // get bar chart canvas<br />
+     /*var pieData = {
+     labels : [{% for item in labels_p %}
+                "{{item}}",
+               {% endfor %}],
+      labels : [{% for item in values_p %}
+      "{{item}}",
+      {% endfor %}],
+      labels : [{% for item in colors_p %}
+      "{{item}}",
+      {% endfor %}]
+     };
+      // get bar chart canvas
+      var mychart_p = document.getElementById("chart3").getContext("2d");
+      steps = 10
+      max = 10
+      // draw pie chart
+      new Chart(mychart_p).Pie(pieData); */
+
+      var pieData = [
+        {% for item, label, colors in set %}
+          {
+            value: {{item}},
+            
+            label: "{{label}}",
+            color : "{{colors}}",
+            labelColor: 'white',
+            labelFontSize: '16'
+          },
+        {% endfor %}
+      ];
+        // Get the context of the canvas element we want to select
+        var chart3= document.getElementById("chart3").getContext("2d");
+        var chart3_l = new Chart(chart3).Pie(pieData);
+        document.getElementById('legend').innerHTML = chart3_l.generateLegend();
+        var pieData_t = [
+        {% for item, label, colors in set2 %}
+          {
+            value: {{item}},
+            
+            label: "{{label}}",
+            color : "{{colors}}",
+            labelColor : 'white',
+            labelFontSize : '16'
+          },
+        {% endfor %}
+      ];
+      
+        // Get the context of the canvas element we want to select
+        var chart4= document.getElementById("chart4").getContext("2d");
+        var chart4_l = new Chart(chart4).Pie(pieData_t);
+      document.getElementById('legend2').innerHTML = chart4_l.generateLegend();
+
+   </script>
+</body>
+</html>
