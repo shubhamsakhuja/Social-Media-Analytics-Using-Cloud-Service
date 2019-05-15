@@ -1,0 +1,63 @@
+# To login into that particular node.
+ssakhuja@DESKTOP-1VD1T6Q:~$ sudo ssh -i /home/ssakhuja/.ssh/Instance4key.pem ubuntu@172.26.XX.XX.
+
+# Step 1 — Installing Apache
+# Update your local package index:
+
+$ sudo apt update
+
+# Install the apache2 package:
+
+$ sudo apt install apache2
+
+# Step 2 — Adjusting the Firewall
+# Check the available ufw application profiles:
+
+$ sudo ufw app list
+# Output
+# Available applications:
+#  Apache
+#  Apache Full
+#  Apache Secure
+#  OpenSSH
+
+#Allow the Apache Server
+$ sudo ufw allow 'Apache'
+
+#Verify the change:
+$ sudo ufw status
+
+#If not enabled use
+$sudo ufw enable
+# It will enable the firewall
+
+# Output
+# Status: active
+
+To                         Action      From
+--                         ------      ----
+OpenSSH                    ALLOW       Anywhere                  
+Apache                     ALLOW       Anywhere                  
+OpenSSH (v6)               ALLOW       Anywhere (v6)             
+Apache (v6)                ALLOW       Anywhere (v6)
+
+#Check with the systemd init system to make sure the service is running by typing:
+
+$ sudo systemctl status apache2
+
+Output
+● apache2.service - The Apache HTTP Server
+   Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+  Drop-In: /lib/systemd/system/apache2.service.d
+           └─apache2-systemd.conf
+   Active: active (running) since Tue 2018-04-24 20:14:39 UTC; 9min ago
+ Main PID: 2583 (apache2)
+    Tasks: 55 (limit: 1153)
+   CGroup: /system.slice/apache2.service
+           ├─2583 /usr/sbin/apache2 -k start
+           ├─2585 /usr/sbin/apache2 -k start
+           └─2586 /usr/sbin/apache2 -k start
+           
+# Access the default Apache landing page to confirm that the software is running properly through your IP address:
+
+http://your_server_ip
